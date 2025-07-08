@@ -16,7 +16,7 @@ jobs:
         run: msbuild Certify.sln /p:Configuration=Release
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Certify
           path: Certify/bin/Release/Certify.exe
