@@ -12,6 +12,12 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
 
+      - name: Install .NET Framework 4.0 Developer Pack
+        run: |
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/D/15D4EC52-4B33-4A52-A68A-BE45FDF1B57A/NDP40-DevPack-KB2600211-ENU.exe" -OutFile "ndp40.exe"
+          Start-Process -FilePath .\ndp40.exe -ArgumentList "/quiet", "/norestart" -Wait
+        shell: powershell
+
       - name: Build Certify.sln
         run: msbuild Certify.sln /p:Configuration=Release
 
