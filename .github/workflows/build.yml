@@ -1,0 +1,22 @@
+name: Build Certify
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build Certify.sln
+        run: msbuild Certify.sln /p:Configuration=Release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Certify
+          path: Certify/bin/Release/Certify.exe
